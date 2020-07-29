@@ -19,11 +19,7 @@ public class Handle {
 	private String handle;
 	
 	@Column(name="resource_type_id")
-	private long resourceType;
-	
-
-	
-	
+	private long resourceType;	
 	
 	
 	public long getHandleId() {

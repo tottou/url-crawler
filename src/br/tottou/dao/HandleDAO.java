@@ -11,27 +11,6 @@ import br.tottou.entity.Handle;
 public class HandleDAO {
 
 	
-	
-/*	
- * Caso não fosse usar hibernate.cfg.xml
- * 
-	public Session getSession()
-	{
-		Configuration cfg = new Configuration()
-				 .addClass(br.jus.tse.entity.Handle.class)				    
-				    .setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
-				    .setProperty("hibernate.connection.driver_class", "org.postgresql.Driver")
-				    .setProperty("hibernate.connection.username", "dspace")
-				    .setProperty("hibernate.connection.password", "dspace")
-				    .setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/dspace5")
-				    .setProperty("hibernate.show_sql", "true")
-				    .setProperty("hibernate.format_sql", "true");
-				 
-			SessionFactory sessionFactory = cfg.buildSessionFactory();
-			Session session = sessionFactory.openSession();
-			return session;
-	}	}*/
-	
 	public Handle getHandle(Long id) {
 		
 	    Session session =  HibernateConnector.getInstance().getSession();

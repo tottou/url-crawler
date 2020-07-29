@@ -37,6 +37,7 @@ public class CheckOJSVersion {
 						}					 
 					 
 					 urls.add("Versão:"+content);
+					 System.out.println(content);
 				} catch (HttpStatusException e) {
 					// about bloqueado
 					 urls.add("Falha ao tentar acessar: "+prefixo+handle);
