@@ -1,15 +1,13 @@
 package br.tottou.main;
 
 import java.io.FileWriter;
-import java.net.SocketTimeoutException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.jsoup.HttpStatusException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
+
+import br.tottou.util.LeitorXml;
+import br.tottou.util.VerCrawler;
 
 
 /**
@@ -21,39 +19,25 @@ import org.jsoup.select.Elements;
 
 public class CheckOJSVersion {
 	 public static void main(String[] args) throws Exception {
-	        String prefixo = "https://www.revistas.ufg.br/revistaufg/";
-	        String handle = "about/aboutThisPublishingSystem";
-			 List<String> urls = new ArrayList<String>();
-				try {
-					 Document document = Jsoup.connect(prefixo+handle)
-							 .timeout(10000).validateTLSCertificates(false).get();
-					 Elements metaTags = document.getElementsByTag("meta");
-					 String content="Não foi possível encontrar.";
-					 for (Element metaTag : metaTags) {
-						 if (metaTag.attr("name").equals("generator")) {
-							 content = metaTag.attr("content");
-							 break;
-						 	}						 
-						}					 
-					 
-					 urls.add("Versão:"+content);
-					 System.out.println(content);
-				} catch (HttpStatusException e) {
-					// about bloqueado
-					 urls.add("Falha ao tentar acessar: "+prefixo+handle);
-				}						
-				 catch (SocketTimeoutException e) {
-					// timeout
-					 urls.add("Socket timeout: "+prefixo+handle);
-				}	
+		 Set<String> listaVersoes = new HashSet<String>(); 
+		 Set<String> listaUrl = LeitorXml.fetchUrl("d:\\titledb.xml");
+		 String versao = "";
+		 
+		 for (String url : listaUrl) {
+			 System.out.println("Buscando versão no endereço: "+url);
+			 versao=VerCrawler.buscarVersao(url);
+			 listaVersoes.add(url +" - "+versao);			 
 			 
-			 FileWriter writer = new FileWriter("d:\\ItensProd.txt"); 
-			 for(String str: urls) {
+		 }
+		 
+		 	 
+			 FileWriter writer = new FileWriter("d:\\versao_ojs.txt"); 
+			 for(String str: listaVersoes) {
 			   writer.write(str);
 			   writer.write("\n");
 			 }
 			 writer.close();
-	
+			 System.out.println("Processo finalizado.");
 	  
 	 }
 
