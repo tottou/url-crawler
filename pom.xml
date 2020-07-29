@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>url-crawler</groupId>
   <artifactId>url-crawler</artifactId>
-  <version>1.0.0.1</version>
+  <version>1.1.0.0</version>
   <dependencies>
     <dependency>
       <groupId>org.jsoup</groupId>
