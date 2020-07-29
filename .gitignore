@@ -1,4 +1,30 @@
-target
+# maven ignore
+target/
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+*.class
+
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
 bin
+conf
+lib
+logs
+
+
 
 
